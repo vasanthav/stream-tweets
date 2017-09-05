@@ -1,0 +1,59 @@
+<h1>Hello {{name}}</h1>
+
+<p *ngIf="error">{{error}}</p>
+
+<ul>
+    <label>Tips: </label>
+    <li>Please use regex without `/` & `/` for better results</li>
+    <li>Use add more button to add more querying selections</li>
+    <li>Press update results to update page with selected options</li>
+    <li>All results will be displayed without any selection and on load</li>
+    <li>Incomplete sets of query options selected will be ignored</li>
+    <li>First 500 results from stream will be returned as of now</li>
+    <li>Available Langs: <strong>{{langsAvailable}}</strong></li>
+</ul>
+
+<br/>
+
+<h2>Select filters below to filter out results: </h2>
+
+<form [formGroup]="myForm" name="form{{i}}" novalidate>
+
+    <div formArrayName="queryOptions">
+
+        <div *ngFor="let queryOption of myForm.controls.queryOptions.controls; let i = index">
+            
+            <div [formGroupName]="i">
+
+                <label for="name">Field {{i + 1}}:</label>
+                <select id="fieldSelect{{i}}" name="state{{i}}" formControlName="Field" >
+                    <option value="" disabled>Choose a field</option>
+                    <option *ngFor="let value of values" 
+                            [ngValue]="value.value">{{value.label}}</option>
+                </select>
+
+
+                <label for="name">Operator {{i + 1}}:</label>
+                <select id="filterSelect{{i}}" name="filter{{i}}" formControlName="Operator" >
+                    <option value="" disabled>Choose a filter</option>
+                    <option *ngFor="let filter of filters" 
+                            [ngValue]="filter.value">{{filter.label}}</option>
+                </select>
+
+                <label for="name">Value:</label>
+                <input id="filterValue{{i}}" name="valueName{{i}}" formControlName="Value" />
+
+            </div>
+        </div>
+    </div>
+</form>
+<button (click)="addQuery()">+ Add More Query Options</button>
+
+<button (click)="callTweets()">Update Results</button>
+
+<ul>  
+  <li *ngFor="let tweet of results">
+    <h3>user: {{ tweet.user }}</h3>
+    <p class="col-xs-6">tweet: <strong>{{ tweet.tweet }}</strong> made at <strong>{{ tweet.created_at | date:'medium' }}</strong> in language {{ tweet.lang }}</p>
+  </li>
+<ul> 
