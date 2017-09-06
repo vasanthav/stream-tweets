@@ -51,9 +51,17 @@
 
 <button (click)="callTweets()">Update Results</button>
 
-<ul>  
-  <li *ngFor="let tweet of results">
-    <h3>user: {{ tweet.user }}</h3>
-    <p class="col-xs-6">tweet: <strong>{{ tweet.tweet }}</strong> made at <strong>{{ tweet.created_at | date:'medium' }}</strong> in language {{ tweet.lang }}</p>
-  </li>
-<ul> 
+<ul>
+    <li *ngFor="let tweet of results">
+        <p class="col-xs-6">
+            {{ '{' }}<br>
+            <span class="tweetAtrr">"tweet": <span class="tweetStrValue">"{{ tweet.tweet }}"</span>,<br></span>
+            <span class="tweetAtrr">"user": <span class="tweetStrValue">"{{tweet.user}}"</span>,<br></span>
+            <span class="tweetAtrr">"retweet_count": <span class="tweetNumValue">{{ tweet.retweet_count }}</span>,<br> </span>
+            <span class="tweetAtrr">"created_at": <span class="tweetNumValue">{{ tweet.created_at | date:'medium' }}</span>,<br></span>
+            <span class="tweetAtrr">"verified": {{ tweet.verified }},<br> </span>
+            <span class="tweetAtrr">"lang": <span class="tweetStrValue">"{{ tweet.lang }}"</span><br> </span>
+            {{ '}' }}
+        </p>
+    </li>
+</ul>

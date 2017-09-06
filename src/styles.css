@@ -3,3 +3,16 @@ h1 {
   font-family: Arial, Helvetica, sans-serif;
   font-size: 250%;
 }
+.col-xs-6 {
+  font: 14px Consolas, "Liberation Mono", Menlo, Courier, monospace
+}
+.tweetAtrr {
+  padding-left: 1.8em
+}
+.tweetStrValue {
+  color: red;
+}
+
+.tweetNumValue {
+  color: #008080;
+}
